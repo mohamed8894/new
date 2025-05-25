@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Israa ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter:opsz,wght@14..32,500&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-hearts" id="loginHearts"></div>
+        <div class="login-container">
+            <img src="two.JPG" alt="Special Image" class="login-img">
+            <h1 class="login-title">اكتبي اول تاريخ اتكلمنا فيه</h1>
+            <p class="login-subtitle">Enter the date without "/" or "-" or "." (8 digits)</p>
+            <div class="login-form-row">
+                <input type="password" maxlength="8" pattern="\\d{8}" class="login-input" id="passwordInput" placeholder="Enter 8 digits">
+                <button class="login-btn" onclick="checkPassword()">Enter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Intro Section -->
+    <div class="video-intro" id="videoIntro" style="display: none;">
+        <video id="introVideo" width="100%" height="100%" controls>
+            <source src="love3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <button class="skip-button" onclick="skipVideo()">Skip Video ⏭️</button>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="backgroundMusic" onended="playSecondSong()">
+        <source src="love.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="secondMusic" loop>
+        <source src="love2.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Main Website -->
+    <div class="main-website" id="mainWebsite" style="display: none;">
+        <!-- Floating Hearts -->
+        <div class="floating-hearts" id="floatingHearts"></div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">👇</div>
+
+        <!-- Hero Section -->
+        <section class="section">
+            <div class="container">
+                <div class="hero">
+                    <h1>Happy Birthday Israa! </h1>
+                    <div class="heart">❤️</div>
+                        <p>❤️ حب عمري ❤️ </p>
+                    <p>بنتى وحبيبتى وكل ما ليا</p>
+                        <div class="heart">💕</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timer Section -->
+        <section class="section">
+            <div class="container">
+                <div class="timer-section">
+                    <div class="image-container">
+                        <div class="heart">💕</div>
+                        <div class="heart">💖</div>
+                        <div class="heart">💝</div>
+                        <div class="heart">💗</div>
+                        <img class="memory-image pulse" id="memoryImage" src="three.JPEG" alt="Our Special Memory" />
+                    </div>
+                    
+                    <div class="message">
+                        طول العمر كنتي علي بالي من اول يوم شوفتك فيه 
+                    </div>
+                    
+                    <div class="timer-container">
+                        <div class="timer-grid">
+                            <div class="time-unit">
+                                <span class="time-number" id="years">0</span>
+                                <div class="time-label">Years</div>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-number" id="months">0</span>
+                                <div class="time-label">Months</div>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-number" id="days">0</span>
+                                <div class="time-label">Days</div>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-number" id="hours">0</span>
+                                <div class="time-label">Hours</div>
+                            </div>
+                            <div class="time-unit">
+                                <span class="time-number" id="minutes">0</span>
+                                <div class="time-label">Minutes</div>
+                            </div>
+                            <div class="time-unit" id="secondsUnit">
+                                <span class="time-number" id="seconds">0</span>
+                                <div class="time-label">Seconds</div>
+                            </div>
+                        </div>
+                        <div class="start-date">
+                            Since November 14, 2018
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Animated Masonry Grid with Fade-In -->
+        <section id="masonry-gallery-section" class="section" style="background: #111; padding: 80px 0; color: white;">
+          <style>
+            #masonry-gallery-section h2 {
+              text-align: center;
+              color: white;
+              font-size: 2.5rem;
+              margin-bottom: 60px;
+              text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            }
+            #masonry-gallery-section .masonry-grid {
+              columns: 4 auto;
+              column-gap: 20px;
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 20px;
+            }
+            #masonry-gallery-section .masonry-item {
+              margin-bottom: 20px;
+              break-inside: avoid;
+              opacity: 0;
+              transform: translateY(20px);
+              transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+              box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+              border-radius: 8px;
+              overflow: hidden;
+            }
+            #masonry-gallery-section .masonry-item.visible {
+              opacity: 1;
+              transform: translateY(0);
+            }
+            #masonry-gallery-section .masonry-item img {
+              display: block;
+              width: 100%;
+              height: auto;
+              border-radius: 8px;
+            }
+            @media (max-width: 1024px) { #masonry-gallery-section .masonry-grid { columns: 3 auto; } }
+            @media (max-width: 768px) { #masonry-gallery-section .masonry-grid { columns: 2 auto; } }
+            @media (max-width: 480px) { #masonry-gallery-section .masonry-grid { columns: 3 auto; } }
+          </style>
+          <h2> ❤️ كل حياتى </h2>
+          <div class="masonry-grid">
+            <div class="masonry-item"><img src="IMG_3434.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3666.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_0953.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3435.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3688.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3739.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3826.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_5294.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3564.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="two.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_2694.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6116.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3663.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_2528.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3288.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_3073.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_1966.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_0294.JPEG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_2046.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_2623.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_2061.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_0329.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_0331.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_2530.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_1514.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_0966.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_1688.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_1404.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9659.PNG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_0333.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_0298.JPEG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9285.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9702.JPEG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_5328.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9288.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9457.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9411.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9269.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="one.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9279.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9142.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9300.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9143.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_5231.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_8669.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_8673.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_9126.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="three.JPEG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_8166.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7819.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7814.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6318.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7679.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7817.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7584.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7816.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7706.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7582.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7637.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_5200.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7211.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7583.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7231.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7212.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_7224.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6510.JPEG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6647.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6649.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6594.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_5299.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6258.WEBP" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6390.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_5280.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_6448.JPG" alt="Gallery Image"></div>
+            <div class="masonry-item"><img src="IMG_5243.JPG" alt="Gallery Image"></div>
+                </div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const masonryItems = document.querySelectorAll('#masonry-gallery-section .masonry-item');
+              const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                  }
+                });
+              }, { threshold: 0.1 });
+
+              masonryItems.forEach(item => {
+                observer.observe(item);
+              });
+            });
+          </script>
+        </section>
+
+        <!-- Special Video Section -->
+        <section class="special-video-section">
+            <style>
+                .special-video-section {
+                    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+                    padding: 100px 0;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .special-video-section::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+                    opacity: 0.5;
+                }
+
+                .video-container {
+                    max-width: 1000px;
+                    margin: 0 auto;
+                    position: relative;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                    transform: perspective(1000px) rotateX(5deg);
+                    transition: transform 0.5s ease;
+                    background: #000;
+                }
+
+                .video-container:hover {
+                    transform: perspective(1000px) rotateX(0deg);
+                }
+
+                .video-container::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    border: 2px solid rgba(255,255,255,0.1);
+                    border-radius: 20px;
+                    pointer-events: none;
+                }
+
+                .video-container video {
+                    width: 100%;
+                    display: block;
+                    border-radius: 20px;
+                    background: #000;
+                }
+
+                .video-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 1;
+                    transition: opacity 0.3s ease;
+                }
+
+                .video-container.playing .video-overlay {
+                    opacity: 0;
+                    pointer-events: none;
+                }
+
+                .video-title {
+                    color: white;
+                    font-size: 2.5rem;
+                    margin-bottom: 20px;
+                    text-align: center;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+                    transform: translateY(20px);
+                    transition: transform 0.3s ease;
+                }
+
+                .video-container:hover .video-title {
+                    transform: translateY(0);
+                }
+
+                .video-description {
+                    color: rgba(255,255,255,0.9);
+                    font-size: 1.2rem;
+                    text-align: center;
+                    max-width: 600px;
+                    margin: 0 auto;
+                    transform: translateY(20px);
+                    transition: transform 0.3s ease 0.1s;
+                }
+
+                .video-container:hover .video-description {
+                    transform: translateY(0);
+                }
+
+                .floating-hearts-video {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                }
+
+                .heart-video {
+                    position: absolute;
+                    font-size: 24px;
+                    animation: floatHeart 4s ease-in-out infinite;
+                }
+
+                @keyframes floatHeart {
+                    0%, 100% { transform: translateY(0) rotate(0deg); }
+                    50% { transform: translateY(-20px) rotate(10deg); }
+                }
+
+                .play-button {
+                    margin-top: 20px;
+                    padding: 15px 40px;
+                    font-size: 1.2rem;
+                    background: rgba(255, 255, 255, 0.2);
+                    border: 2px solid white;
+                    color: white;
+                    border-radius: 30px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(5px);
+                }
+
+                .play-button:hover {
+                    background: rgba(255, 255, 255, 0.3);
+                    transform: scale(1.05);
+                }
+            </style>
+
+            <div class="video-container">
+                <video id="specialVideo" controls preload="auto" playsinline>
+                    <source src="love3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay">
+                    <h2 class="video-title">Our Love Story ❤️</h2>
+                    <p class="video-description">Every moment with you is a treasure, every memory a gift. This is our journey together.</p>
+                    <button class="play-button" onclick="playSpecialVideo()">Play Video ▶️</button>
+                </div>
+                <div class="floating-hearts-video" id="floatingHeartsVideo"></div>
+            </div>
+        </section>
+
+        <!-- Birthday Cake Section -->
+        <section id="birthday-cake-section" class="section" style="background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%); padding: 80px 0; color: white;">
+          <style>
+            #birthday-cake-section {
+              text-align: center;
+              min-height: 100vh;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+              overflow: hidden;
+            }
+            #birthday-cake-section h2 {
+              font-size: 3rem;
+              margin-bottom: 40px;
+              text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+              animation: bounce 2s infinite;
+            }
+            .cake-container {
+              position: relative;
+              width: 300px; /* Adjusted width */
+              height: 300px; /* Adjusted height */
+              margin: 20px auto;
+              perspective: 1000px; /* Added perspective */
+            }
+            .cake {
+              position: relative;
+              width: 100%;
+              height: 100%;
+              transform-style: preserve-3d; /* Re-added 3D */
+              transform: rotateX(20deg) rotateY(0deg); /* Added rotation for perspective */
+              transform-origin: center bottom; /* Set origin for rotation */
+            }
+            .cake-layer {
+              position: absolute;
+              width: 100%;
+              box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Adjusted shadow */
+              left: 0;
+              /* Rounded corners for a softer look */
+              border-radius: 8px;
+              background: linear-gradient(to bottom, #5a3a36, #4a2c2a); /* Chocolate gradient */
+            }
+            .cake-layer-1 {
+              height: 70px; /* Adjusted height */
+              bottom: 0;
+              transform: translateZ(0px); /* Base layer */
+            }
+            .cake-layer-2 {
+              height: 60px; /* Adjusted height */
+              bottom: 65px; /* Adjusted position */
+              width: 96%; /* Adjusted width */
+              left: 2%; /* Centered */
+              transform: translateZ(10px); /* Add depth */
+            }
+            .cake-layer-3 {
+              height: 50px; /* Adjusted height */
+              bottom: 120px; /* Adjusted position */
+              width: 92%; /* Adjusted width */
+              left: 4%; /* Centered */
+              transform: translateZ(20px); /* Add more depth */
+            }
+            .icing {
+                position: absolute;
+                width: 100%;
+                height: 60px; /* Adjusted height of the icing */
+                bottom: 165px; /* Adjusted position */
+                left: 0;
+                background: linear-gradient(to bottom, #ffffff, #f0f0f0); /* White gradient */
+                /* More natural rounded top and drips */
+                border-top-left-radius: 100% 60px;
+                border-top-right-radius: 100% 60px;
+                border-bottom-left-radius: 30px 15px;
+                border-bottom-right-radius: 30px 15px;
+                /* Simplified clip-path for softer drips */
+                clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 95% 85%, 90% 80%, 85% 85%, 80% 80%, 75% 85%, 70% 80%, 65% 85%, 60% 80%, 55% 85%, 50% 80%, 45% 85%, 40% 80%, 35% 85%, 30% 80%, 25% 85%, 20% 80%, 15% 85%, 10% 80%, 5% 85%, 0% 80%);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                 transform: translateZ(30px); /* Add more depth */
+            }
+             .base-shadow {
+                position: absolute;
+                width: 80%;
+                height: 30px;
+                bottom: -20px;
+                left: 10%;
+                background: rgba(0,0,0,0.2);
+                border-radius: 50%;
+                filter: blur(10px);
+                z-index: -1; /* Place behind cake */
+            }
+
+            .candle {
+              position: absolute;
+              width: 10px; /* Adjusted width */
+              height: 40px; /* Adjusted height */
+              background: linear-gradient(to top, #c0392b, #e74c3c); /* Red gradient */
+              bottom: 195px; /* Adjusted position */
+              left: 50%;
+              transform: translateX(-50%) translateZ(40px); /* Position above icing with depth */
+              border-radius: 3px; /* Adjusted radius */
+              box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+             .wick {
+                position: absolute;
+                width: 3px;
+                height: 8px;
+                background: #333; /* Dark color for wick */
+                bottom: 38px; /* Position on top of candle */
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 1; /* Ensure wick is above candle */
+            }
+            .flame {
+              position: absolute;
+              width: 15px; /* Adjusted width */
+              height: 25px; /* Adjusted height */
+              background: radial-gradient(circle at center bottom, #ffebb3 0%, #ffa500 50%, #ff7f50 100%); /* Realistic flame gradient */
+              bottom: 230px; /* Adjusted position */
+              left: 50%;
+              transform: translateX(-50%) translateZ(40px); /* Position above wick with depth */
+              border-radius: 50% 50% 20% 20%;
+              animation: flicker 0.3s infinite alternate; /* Faster flicker */
+              box-shadow: 0 0 15px 5px #ffa500; /* Larger, softer shadow */
+            }
+            .flame.blown {
+              animation: blow-out 0.5s forwards; /* Keep blow-out animation */
+            }
+            .blow-button {
+              margin-top: 40px;
+              padding: 15px 40px;
+              font-size: 1.2rem;
+              background: rgba(255,255,255,0.2);
+              border: 2px solid white;
+              color: white;
+              border-radius: 30px;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              backdrop-filter: blur(5px);
+            }
+            .blow-button:hover {
+              background: rgba(255,255,255,0.3);
+              transform: scale(1.05);
+            }
+            .birthday-message {
+              margin-top: 30px;
+              font-size: 1.5rem;
+              opacity: 0;
+              transform: translateY(20px);
+              transition: all 0.5s ease;
+            }
+            .birthday-message.show {
+              opacity: 1;
+              transform: translateY(0);
+            }
+            .confetti {
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              background: #ffd700;
+              animation: confetti-fall 3s linear forwards;
+            }
+            @keyframes flicker {
+              0% { transform: translateX(-50%) scale(1) translateZ(40px); opacity: 1; }
+              100% { transform: translateX(-50%) scale(1.05) translateZ(40px); opacity: 0.9; }
+            }
+            @keyframes blow-out {
+              0% { transform: translateX(-50%) scale(1) translateZ(40px); opacity: 1; }
+              100% { transform: translateX(-50%) scale(0) translateZ(40px); opacity: 0; }
+            }
+            @keyframes bounce {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(-10px); }
+            }
+            @keyframes confetti-fall {
+              0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+              100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+          </style>
+          <h2>🎂 Happy 20th Birthday ya 7yati 🎂</h2>
+          <div class="cake-container">
+            <div class="cake">
+              <div class="cake-layer cake-layer-1"></div>
+              <div class="cake-layer cake-layer-2"></div>
+              <div class="cake-layer cake-layer-3"></div>
+              <div class="icing"></div> <!-- Icing layer -->
+              <div class="base-shadow"></div> <!-- Added base shadow -->
+              <!-- Reverted to a single candle with wick -->
+              <div class="candle-container">
+                  <div class="candle"><div class="wick"></div></div>
+                        </div>
+              <div class="flame"></div>
+                    </div>
+                </div>
+          <button class="blow-button" onclick="blowCandle()">Blow the Candle! 💨</button>
+          <div class="birthday-message">
+            <p>Happy Birthday, ya Ro7i! 🎉</p>
+            <p>✨ كل العمر مع بعض يروحي</p>
+            </div>
+          <script>
+            function blowCandle() {
+              // Select the single flame
+              const flame = document.querySelector('.flame');
+              const message = document.querySelector('.birthday-message');
+              const button = document.querySelector('.blow-button');
+              
+              // Add blown class to the flame
+              flame.classList.add('blown');
+              
+              // Create confetti
+              for (let i = 0; i < 50; i++) {
+                createConfetti();
+              }
+              
+              // Show birthday message
+              setTimeout(() => {
+                message.classList.add('show');
+              }, 500);
+              
+              // Disable button
+              button.disabled = true;
+              button.style.opacity = '0.5';
+               button.textContent = 'Candle Blown!'; /* Updated button text */
+            }
+            
+            function createConfetti() {
+              const confetti = document.createElement('div');
+              confetti.className = 'confetti';
+              confetti.style.left = Math.random() * 100 + '%';
+              confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+              confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+              document.getElementById('birthday-cake-section').appendChild(confetti);
+              
+              // Remove confetti after animation
+              setTimeout(() => {
+                confetti.remove();
+              }, 3000);
+            }
+          </script>
+        </section>
+    </div>
+
+    <style>
+        .video-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-intro video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .skip-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .skip-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+
+    <script src="script.js"></script>
+</body>
+</html>
